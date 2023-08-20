@@ -58,9 +58,9 @@ export class UserComponent implements OnInit {
   }
 }
 // <button routerLink="/profile/overview" mat-menu-item>
-// <mat-icon>account_circle</mat-icon>
-// <span>{{ 'profile' | translate }}</span>
-// </button>
+ //<mat-icon>account_circle</mat-icon>
+ //<span>{{ 'profile' | translate }}</span>
+ //</button>
 // <button routerLink="/profile/settings" mat-menu-item>
 // <mat-icon>edit</mat-icon>
 // <span>{{ 'edit_profile' | translate }}</span>

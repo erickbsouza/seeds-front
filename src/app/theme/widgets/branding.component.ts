@@ -4,8 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-branding',
   template: `
     <a class="d-inline-block text-nowrap r-full text-reset" href="/">
-      <img src="./assets/images/matero.png" class="brand-logo align-middle m-2" alt="logo" />
-      <span class="align-middle f-s-16 f-w-500 m-x-8">MATERO</span>
+      <img src="./assets/images/soy.png" class="brand-logo align-middle m-2" alt="logo" />
+      <span class="align-middle f-s-16 f-w-500 m-x-8"><strong>SAID</strong></span>
     </a>
   `,
   styles: [

@@ -11,6 +11,26 @@
       }
     },
     {
+      "route": "new-analyse",
+      "name": "new-analyse",
+      "type": "link",
+      "icon": "dashboard",
+      "badge": {
+        "color": "red-500",
+        "value": "1"
+      }
+    },
+    {
+      "route": "analyses",
+      "name": "analyses",
+      "type": "link",
+      "icon": "dashboard",
+      "badge": {
+        "color": "red-500",
+        "value": "54"
+      }
+    },
+    {
       "route": "/",
       "name": "sessions",
       "type": "sub",

@@ -1,0 +1,70 @@
+<mat-stepper labelPosition="bottom" #stepper orientation="horizontal">
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Anexe a(s) imagens para análise</ng-template>
+
+        <mat-form-field class="max-width">
+          <mat-label>Upload</mat-label>
+          <ngx-mat-file-input formControlName="multipleInputFile"
+              placeholder="Anexe imagens para análise"
+              multiple="true"
+              valuePlaceholder="Nenhuma imagem selecionada"
+              required>
+          </ngx-mat-file-input>
+          <mat-icon matSuffix>folder</mat-icon>
+          <mat-error *ngIf="firstFormGroup.get('multipleInputFile')?.hasError('required')">
+            Please select a file
+          </mat-error>
+          <mat-error *ngIf="firstFormGroup.get('multipleInputFile')?.hasError('maxContentSize')">
+            The total size must not exceed {{firstFormGroup.get('multipleInputFile')?.getError('maxContentSize').maxSize |
+            byteFormat}} ({{firstFormGroup.get('multipleInputFile')?.getError('maxContentSize').actualSize
+            | byteFormat}}).
+          </mat-error>
+        </mat-form-field>
+        <p>Tamanho máximo para analisar {{ maxSize | byteFormat }}</p>
+        
+        <div>
+          <button mat-raised-button color="accent">Análisar imagens</button>
+          <button mat-raised-button matStepperNext color="primary">Próximo</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" optional>
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Preencha informações sobre a análise</ng-template>
+        <mat-form-field>
+          <mat-label>Responsável</mat-label>
+          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                 required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Beneficiado</mat-label>
+          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                 required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Data da análise</mat-label>
+          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                 required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Observações</mat-label>
+          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                 required>
+        </mat-form-field>
+        <div>
+          <button mat-raised-button matStepperPrevious color="warn">Voltar</button>
+          <button mat-raised-button matStepperNext color="primary">Próximo</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Finalizar</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-raised-button matStepperPrevious color="warn">Voltar</button>
+        <button mat-stroked-button color="warn" (click)="stepper.reset()">Reiniciar</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+  

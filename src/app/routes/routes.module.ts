@@ -8,6 +8,8 @@ import { RegisterComponent } from './sessions/register/register.component';
 import { Error403Component } from './sessions/403.component';
 import { Error404Component } from './sessions/404.component';
 import { Error500Component } from './sessions/500.component';
+import { NovaAnaliseComponent } from './nova-analise/nova-analise.component';
+import { AnaliseComponent } from './analise/analise.component';
 
 const COMPONENTS: any[] = [
   DashboardComponent,
@@ -16,6 +18,8 @@ const COMPONENTS: any[] = [
   Error403Component,
   Error404Component,
   Error500Component,
+  NovaAnaliseComponent,
+  AnaliseComponent
 ];
 const COMPONENTS_DYNAMIC: any[] = [];
 

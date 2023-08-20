@@ -1,8 +1,8 @@
 {
   "menu": {
     "dashboard": "Dashboard",
-    "analyses": "Analyses",
-    "new-analyse": "New Analyse",
+    "analyses": "Analises Passadas",
+    "new-analyse": "Nova Análise",
     "design": "Design",
     "design.colors": "Color System",
     "design.icons": "Material Icons",
