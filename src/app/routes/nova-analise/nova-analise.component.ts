@@ -19,7 +19,11 @@ export class NovaAnaliseComponent {
     multipleInputFile: [{ value: undefined, disabled: false }, [Validators.required, FileValidator.maxContentSize(this.maxSize)]],
   });
   secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required],
+    responsavel   : ['', Validators.required],
+    beneficiado   : ['', Validators.required],
+    dataAnalise   : ['', Validators.required],
+    dataColheita  : ['', Validators.required],
+    observacoes   : ['', Validators.required],
   });
 
   constructor(private _formBuilder: FormBuilder) {}

@@ -24,7 +24,7 @@
         <p>Tamanho máximo para analisar {{ maxSize | byteFormat }}</p>
         
         <div>
-          <button mat-raised-button color="accent">Análisar imagens</button>
+          <button class="m-r-8" mat-raised-button color="accent">Análisar imagens</button>
           <button mat-raised-button matStepperNext color="primary">Próximo</button>
         </div>
       </form>
@@ -32,28 +32,37 @@
     <mat-step [stepControl]="secondFormGroup" optional>
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>Preencha informações sobre a análise</ng-template>
-        <mat-form-field>
-          <mat-label>Responsável</mat-label>
-          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                 required>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Beneficiado</mat-label>
-          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                 required>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Data da análise</mat-label>
-          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                 required>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Observações</mat-label>
-          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                 required>
-        </mat-form-field>
+        <div class="row m-t-12">
+          <mat-form-field class="col-3">
+            <mat-label>Responsável</mat-label>
+            <input matInput formControlName="responsavel" placeholder="Ex. 1 Main St, New York, NY"
+                   required>
+          </mat-form-field>
+          <mat-form-field class="col-3">
+            <mat-label>Beneficiado</mat-label>
+            <input matInput formControlName="beneficiado" placeholder="Ex. 1 Main St, New York, NY"
+                   required>
+          </mat-form-field>
+          <mat-form-field class="col-3">
+            <mat-label>Data da análise</mat-label>
+            <input type="date" matInput formControlName="dataAnalise" placeholder="Ex. 1 Main St, New York, NY"
+                   required>
+          </mat-form-field>
+          <mat-form-field class="col-3">
+            <mat-label>Data da colheita</mat-label>
+            <input type="date" matInput formControlName="dataColheita" placeholder="Ex. 1 Main St, New York, NY"
+                   required>
+          </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field class="col-3">
+              <mat-label>Observações</mat-label>
+              <input matInput formControlName="observacoes" placeholder="Ex. 1 Main St, New York, NY"
+                    required>
+            </mat-form-field>
+          </div>
         <div>
-          <button mat-raised-button matStepperPrevious color="warn">Voltar</button>
+          <button class="m-r-8" mat-raised-button matStepperPrevious color="warn">Voltar</button>
           <button mat-raised-button matStepperNext color="primary">Próximo</button>
         </div>
       </form>
@@ -62,7 +71,7 @@
       <ng-template matStepLabel>Finalizar</ng-template>
       <p>You are now done.</p>
       <div>
-        <button mat-raised-button matStepperPrevious color="warn">Voltar</button>
+        <button class="m-r-8" mat-raised-button matStepperPrevious color="warn">Voltar</button>
         <button mat-stroked-button color="warn" (click)="stepper.reset()">Reiniciar</button>
       </div>
     </mat-step>
