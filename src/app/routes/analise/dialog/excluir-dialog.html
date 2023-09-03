@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Excluir Análise?</h2>
+<mat-dialog-content class="mat-typography">
+  <h3>Você está prestes a excluir essa análise, tem certeza que deseja continuar?</h3>
+  <p>Essa é uma ação irreversível.</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close cdkFocusInitial>Voltar</button>
+  <button mat-button color="warn" [mat-dialog-close]="true">Excluir</button>
+</mat-dialog-actions>

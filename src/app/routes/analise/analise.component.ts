@@ -1,49 +1,14 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Inject, ViewChild} from '@angular/core';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  fruit: string;
-}
-
-/** Constants used to fill up our data base. */
-const FRUITS: string[] = [
-  'blueberry',
-  'lychee',
-  'kiwi',
-  'mango',
-  'peach',
-  'lime',
-  'pomegranate',
-  'pineapple',
-];
-const NAMES: string[] = [
-  'Maia',
-  'Asher',
-  'Olivia',
-  'Atticus',
-  'Amelia',
-  'Jack',
-  'Charlotte',
-  'Theodore',
-  'Isla',
-  'Oliver',
-  'Isabella',
-  'Jasper',
-  'Cora',
-  'Levi',
-  'Violet',
-  'Arthur',
-  'Mia',
-  'Thomas',
-  'Elizabeth',
-];
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { ExcluirDialog } from './dialog/excluir-dialog';
+import { AnaliseService } from './analise.service';
+import { AnaliseDto } from 'app/dtos/analiseDto.model';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-analise',
@@ -51,18 +16,23 @@ const NAMES: string[] = [
   styleUrls: ['./analise.component.css']
 })
 export class AnaliseComponent implements AfterViewInit {
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
-  dataSource: MatTableDataSource<UserData>;
+  displayedColumns: string[] = ['id', 'responsible', 'date_analyse', 'benefited', 'comments', 'acoes'];
+  dataSource: MatTableDataSource<AnaliseDto>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor() {
-    // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+  constructor(public dialog: MatDialog,
+    private analiseService: AnaliseService) {
 
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+    this.dataSource = new MatTableDataSource();
+    this.consultar();
+  }
+
+  consultar(){
+    this.analiseService.consultar().subscribe((res)=>{
+      this.dataSource = new MatTableDataSource(res)
+    })
   }
 
   ngAfterViewInit() {
@@ -78,20 +48,24 @@ export class AnaliseComponent implements AfterViewInit {
       this.dataSource.paginator.firstPage();
     }
   }
-}
 
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-    ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-    '.';
+  irParaAnalise(idAnalise: number){
+    this.analiseService.detalhes(idAnalise).subscribe((res)=>{
+      console.log(res);
+      // continuar daqui com o redirect para nova tela
+    })
+    console.log("Redirecionando para análise " + idAnalise);
+  }
 
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
-  };
+  deletarAnalise(idAnalise: number){
+    const dialogRef = this.dialog.open(ExcluirDialog);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  baixarAnalise(idAnalise: number){
+    console.log("Baixando análise " + idAnalise);
+  }
+
 }

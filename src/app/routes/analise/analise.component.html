@@ -1,6 +1,6 @@
 <mat-form-field>
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    <mat-label>Filtro</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Sítio boa água" #input>
   </mat-form-field>
   
   <div class="mat-elevation-z8">
@@ -12,22 +12,46 @@
         <td mat-cell *matCellDef="let row"> {{row.id}} </td>
       </ng-container>
   
-      <!-- Progress Column -->
-      <ng-container matColumnDef="progress">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
-        <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
+      <!-- responsible Column -->
+      <ng-container matColumnDef="responsible">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Responsável </th>
+        <td mat-cell *matCellDef="let row"> {{row.responsible}} </td>
       </ng-container>
   
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+      <!-- date_analyse Column -->
+      <ng-container matColumnDef="date_analyse">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Data da análise </th>
+        <td mat-cell *matCellDef="let row"> {{row.date_analyse |date: "dd/MM/YYYY"}} </td>
       </ng-container>
   
+      <!-- comments Column -->
+      <ng-container matColumnDef="comments">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Comentários </th>
+        <td mat-cell *matCellDef="let row"> {{row.comments}} </td>
+      </ng-container>
+
       <!-- Fruit Column -->
-      <ng-container matColumnDef="fruit">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fruit </th>
-        <td mat-cell *matCellDef="let row"> {{row.fruit}} </td>
+      <ng-container matColumnDef="benefited">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Beneficiado </th>
+        <td mat-cell *matCellDef="let row"> {{row.benefited.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acoes">
+        <th class="padding-esquerdo" mat-header-cell *matHeaderCellDef mat-sort-header> Ações </th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button color="accent" (click)="baixarAnalise(row.id)"
+                  matTooltip="Download Excel" aria-label="Download Excel">
+            <mat-icon>attach_file</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" (click)="irParaAnalise(row.id)"
+                  matTooltip="Ir para Análise" aria-label="Ir para Análise">
+            <mat-icon>dashboard</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deletarAnalise(row.id)"
+                  matTooltip="Excluir análise" aria-label="Excluir análise">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
       </ng-container>
   
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

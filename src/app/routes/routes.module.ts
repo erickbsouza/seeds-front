@@ -10,6 +10,7 @@ import { Error404Component } from './sessions/404.component';
 import { Error500Component } from './sessions/500.component';
 import { NovaAnaliseComponent } from './nova-analise/nova-analise.component';
 import { AnaliseComponent } from './analise/analise.component';
+import { AnaliseService } from './analise/analise.service';
 
 const COMPONENTS: any[] = [
   DashboardComponent,
@@ -26,5 +27,6 @@ const COMPONENTS_DYNAMIC: any[] = [];
 @NgModule({
   imports: [SharedModule, RoutesRoutingModule],
   declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC],
+  providers:[AnaliseService]
 })
 export class RoutesModule {}

@@ -16,7 +16,7 @@
             Please select a file
           </mat-error>
           <mat-error *ngIf="firstFormGroup.get('multipleInputFile')?.hasError('maxContentSize')">
-            The total size must not exceed {{firstFormGroup.get('multipleInputFile')?.getError('maxContentSize').maxSize |
+            Tamanho total não deve exceder {{firstFormGroup.get('multipleInputFile')?.getError('maxContentSize').maxSize |
             byteFormat}} ({{firstFormGroup.get('multipleInputFile')?.getError('maxContentSize').actualSize
             | byteFormat}}).
           </mat-error>
@@ -35,29 +35,29 @@
         <div class="row m-t-12">
           <mat-form-field class="col-3">
             <mat-label>Responsável</mat-label>
-            <input matInput formControlName="responsavel" placeholder="Ex. 1 Main St, New York, NY"
+            <input matInput formControlName="responsavel" placeholder=""
                    required>
           </mat-form-field>
           <mat-form-field class="col-3">
             <mat-label>Beneficiado</mat-label>
-            <input matInput formControlName="beneficiado" placeholder="Ex. 1 Main St, New York, NY"
+            <input matInput formControlName="beneficiado" placeholder=""
                    required>
           </mat-form-field>
           <mat-form-field class="col-3">
             <mat-label>Data da análise</mat-label>
-            <input type="date" matInput formControlName="dataAnalise" placeholder="Ex. 1 Main St, New York, NY"
+            <input type="date" matInput formControlName="dataAnalise" placeholder=""
                    required>
           </mat-form-field>
           <mat-form-field class="col-3">
             <mat-label>Data da colheita</mat-label>
-            <input type="date" matInput formControlName="dataColheita" placeholder="Ex. 1 Main St, New York, NY"
+            <input type="date" matInput formControlName="dataColheita" placeholder=""
                    required>
           </mat-form-field>
           </div>
           <div class="row">
             <mat-form-field class="col-3">
               <mat-label>Observações</mat-label>
-              <input matInput formControlName="observacoes" placeholder="Ex. 1 Main St, New York, NY"
+              <input matInput formControlName="observacoes" placeholder=""
                     required>
             </mat-form-field>
           </div>
