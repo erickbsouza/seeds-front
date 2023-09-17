@@ -9,6 +9,8 @@ import { ExcluirDialog } from './dialog/excluir-dialog';
 import { AnaliseService } from './analise.service';
 import { AnaliseDto } from 'app/dtos/analiseDto.model';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
+import { VisualizarAnaliseComponent } from './visualizar-analise/visualizar-analise.component';
 
 @Component({
   selector: 'app-analise',
@@ -23,8 +25,9 @@ export class AnaliseComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(public dialog: MatDialog,
-    private analiseService: AnaliseService) {
-
+    private analiseService: AnaliseService,
+    private router: Router) {
+    
     this.dataSource = new MatTableDataSource();
     this.consultar();
   }
@@ -52,7 +55,7 @@ export class AnaliseComponent implements AfterViewInit {
   irParaAnalise(idAnalise: number){
     this.analiseService.detalhes(idAnalise).subscribe((res)=>{
       console.log(res);
-      // continuar daqui com o redirect para nova tela
+      this.router.navigate(['view-analyses', idAnalise])
     })
     console.log("Redirecionando para análise " + idAnalise);
   }

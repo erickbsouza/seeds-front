@@ -2,11 +2,11 @@ import { AnaliseDto } from "./analiseDto.model";
 
 export interface AnalysisResultsDto {
     id: number;
-    chemical_damge: Number;
-    fungus: Number;
-    high_vigor: Number;
-    physical_damage: Number;
-    seeds_total: Number;
-    wrinkled: Number;
+    chemical_damage: number;
+    fungus: number;
+    high_vigor: number;
+    physical_damage: number;
+    seeds_total: number;
+    wrinkled: number;
     analyse: AnaliseDto;
 }

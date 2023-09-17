@@ -11,6 +11,7 @@ import { Error500Component } from './sessions/500.component';
 import { NovaAnaliseComponent } from './nova-analise/nova-analise.component';
 import { AnaliseComponent } from './analise/analise.component';
 import { AnaliseService } from './analise/analise.service';
+import { VisualizarAnaliseComponent } from './analise/visualizar-analise/visualizar-analise.component';
 
 const COMPONENTS: any[] = [
   DashboardComponent,
@@ -20,7 +21,8 @@ const COMPONENTS: any[] = [
   Error404Component,
   Error500Component,
   NovaAnaliseComponent,
-  AnaliseComponent
+  AnaliseComponent,
+  VisualizarAnaliseComponent
 ];
 const COMPONENTS_DYNAMIC: any[] = [];
 

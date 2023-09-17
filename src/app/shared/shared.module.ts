@@ -22,6 +22,8 @@ import { DisableControlDirective } from './directives/disable-control.directive'
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { ToObservablePipe } from './pipes/to-observable.pipe';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 
 const MODULES: any[] = [
   CommonModule,
@@ -39,6 +41,8 @@ const MODULES: any[] = [
   ToastrModule,
   TranslateModule,
   MaterialFileInputModule,
+  NgApexchartsModule,
+  CanvasJSAngularChartsModule,
 ];
 const COMPONENTS: any[] = [BreadcrumbComponent, PageHeaderComponent, ErrorCodeComponent];
 const COMPONENTS_DYNAMIC: any[] = [];

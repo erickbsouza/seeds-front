@@ -1,0 +1,11 @@
+.padding-esquerdo{
+    padding-left: 35px !important;
+}
+
+.chart {
+    margin-bottom: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin-left: 10px;
+    max-width: 49%;
+}
+

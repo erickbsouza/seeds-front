@@ -6,7 +6,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -17,4 +17,24 @@
   },
   "ngx-translate.lookup.resourcesType": "json",
   "ngx-translate.lookup.resourcesPath": "src/assets/i18n/zh-CN.json",
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#99ff94",
+    "activityBar.activeBorder": "#ff0000",
+    "activityBar.background": "#99ff94",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#008006",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "sash.hoverBorder": "#99ff94",
+    "statusBar.background": "#99ff94",
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#ff392e",
+    "statusBarItem.remoteBackground": "#99ff94",
+    "statusBarItem.remoteForeground": "#15202b",
+    "titleBar.activeBackground": "#99ff94",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#99ff94",
+    "titleBar.inactiveForeground": "#15202b99",
+    "commandCenter.border": "#15202b99"
+  },
 }
