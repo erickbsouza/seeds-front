@@ -16,3 +16,20 @@ export interface IProfile {
   website: string;
   date: string;
 }
+
+export interface ITdDataTableColumnWidth {
+  min?: number;
+  max?: number;
+}
+export interface ITdDataTableColumn {
+  name: string;
+  label: string;
+  tooltip?: string;
+  numeric?: boolean;
+  format?: (value: any) => any;
+  nested?: boolean;
+  sortable?: boolean;
+  hidden?: boolean;
+  filter?: boolean;
+  width?: ITdDataTableColumnWidth | number;
+}

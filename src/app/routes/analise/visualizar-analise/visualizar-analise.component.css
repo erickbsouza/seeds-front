@@ -9,3 +9,44 @@
     max-width: 49%;
 }
 
+.card-green{
+    background-color: #20c94a;
+}
+.card-green:hover{
+    background-color: rgb(42, 222, 87);
+}
+
+.card-red{
+    background-color: #f05151;
+}
+.card-red:hover{
+    background-color: #f95353;
+}
+
+.card-blue{
+    background-color: #515bf0;
+}
+.card-blue:hover{
+    background-color: #5762fb;
+}
+
+.card-cian{
+    background-color: #43bfc8;
+}
+.card-cian:hover{
+    background-color: #4bd6e0;
+}
+
+.card-analyse{
+    font-size: large;
+    max-width: 20rem ;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.card-analyse:hover{
+    box-shadow: rgba(114, 114, 114, 0.24) 0px 3px 8px;
+}
+

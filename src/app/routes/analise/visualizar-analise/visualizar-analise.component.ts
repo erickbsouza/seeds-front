@@ -2,9 +2,14 @@ import { AfterViewInit, Component, Input, NgZone, OnInit, ViewChild } from "@ang
 import { ActivatedRoute, Router } from "@angular/router";
 import { AnaliseDto } from "app/dtos/analiseDto.model";
 import { AnaliseService } from "../analise.service";
+import { ITdDataTableColumn } from "@shared";
+import { get, set } from 'lodash'
 
 import { AnalysisResultsDto } from "app/dtos/resultadoAnaliseDto.model";
 import { CHEMICAL_DAMAGE, FUNGUS, HIGH_VIGOR, PHYSYCAL_DAMAGE, WRINKLED } from "@shared";
+import { CsvService } from "@shared/services/csv.service";
+import { DatePipe, formatDate } from "@angular/common";
+import { COLUMNS } from "../colunas.interface";
   
 
   export type SumSeedsResults = {
@@ -37,10 +42,15 @@ import { CHEMICAL_DAMAGE, FUNGUS, HIGH_VIGOR, PHYSYCAL_DAMAGE, WRINKLED } from "
     barChartOptions: any;
     barMediaChartOptions: any;
     chart: any;
+    quantityHighVigorSeeds: number = 0;
+    quantitySeedsWithProblems: number = 0;
+    @Input() columns: ITdDataTableColumn[] = COLUMNS;
 
 
     constructor(private router: ActivatedRoute,
-      private analiseService: AnaliseService) {
+      private analiseService: AnaliseService, 
+      private datePipe: DatePipe,
+      private routerNavigate: Router) {
       
     }
     
@@ -64,6 +74,8 @@ import { CHEMICAL_DAMAGE, FUNGUS, HIGH_VIGOR, PHYSYCAL_DAMAGE, WRINKLED } from "
           this.seriesMedia.wrinkled         = Math.round(this.series.wrinkled       / totalCount)
           this.seriesMedia.total            = Math.round(this.series.total          / totalCount)
         });
+        this.quantityHighVigorSeeds = this.series.highVigor;
+        this.quantitySeedsWithProblems =  this.series.total - this.series.highVigor
         this.createPieChart();
         this.createPareto();
         this.createBarNormal();
@@ -246,6 +258,48 @@ import { CHEMICAL_DAMAGE, FUNGUS, HIGH_VIGOR, PHYSYCAL_DAMAGE, WRINKLED } from "
       }
     }
 
+    createCSV() {
+      CsvService.downloadByCsv(`${this.getCabecalhoAnalise()} \r\n` + CsvService.ConvertToCSV(this.getLinhasRelatorio()), `registros`)
+    }
+
+    getLinhasRelatorio(){
+      return this.analise?.analysis_results.map( row => {
+        let linha = {};
+        this.columns.forEach(col => {
+          set(linha, col.label, this.getElement(row, col));
+        })
+        return linha
+      })
+    }
+
+    getElement(row: any, column: any) {
+      return column.format ? column.format(get(row, column.name)) : get(row, column.name)
+    }
+
+    private getCabecalhoAnalise(){
+      let cabecalho =  `Identificador da analise ; ${this.analise?.id}  \r\n`
+      cabecalho = cabecalho.concat(`Data da análise ; ${ this.datePipe.transform(this.analise?.date_analyse, 'dd/MM/yyyy') }   \r\n`)
+      cabecalho = cabecalho.concat(`Responsável ; ${this.analise?.responsible}  \r\n`)
+      cabecalho = cabecalho.concat(`Beneficiado ; ${this.analise?.benefited.name} ; ${this.analise?.benefited.email} ; ${this.analise?.benefited.contact} \r\n`)
+      cabecalho = cabecalho.concat(`Comentários ; ${this.analise?.comments}  \r\n`)
+
+      cabecalho = cabecalho.concat(`Imagens ; ${this.analise?.analysis_results.length}  \r\n`)
+      cabecalho = cabecalho.concat(`Total de sementes ; ${this.series.total}  \r\n`)
+      cabecalho = cabecalho.concat(`Sementes com alto vigor ; ${this.quantityHighVigorSeeds}  \r\n`)
+      cabecalho = cabecalho.concat(`Sementes com problemas ; ${this.quantitySeedsWithProblems}  \r\n`)
+      cabecalho = cabecalho.concat(`Sumário da análise   \r\n`)
+      cabecalho = cabecalho.concat(`${HIGH_VIGOR} ; ${CHEMICAL_DAMAGE} ; ${FUNGUS} ; ${PHYSYCAL_DAMAGE} ; ${WRINKLED} ; Total \r\n`)
+      cabecalho = cabecalho.concat(`${this.series.highVigor} ; ${this.series.chemicalDamage} ; ${this.series.fungus} ; ${this.series.physicalDamage} ; ${this.series.wrinkled} ; ${this.series.total} \r\n`)
+      cabecalho = cabecalho.concat(`\r\n`)
+      cabecalho = cabecalho.concat(`Detalhamento por imagem \r\n`)
+
+      return cabecalho;
+    }
+
+    voltarParaTabela(){
+        this.routerNavigate.navigate(['analyses'])
+    }
+
     private createToolBarColors() {
       return {
         itemBackgroundColor: "#424242",
@@ -258,3 +312,4 @@ import { CHEMICAL_DAMAGE, FUNGUS, HIGH_VIGOR, PHYSYCAL_DAMAGE, WRINKLED } from "
     }
     
 }
+

@@ -25,6 +25,13 @@ export function TranslateHttpLoaderFactory(http: HttpClient) {
 import { LoginService } from '@core/authentication/login.service';
 import { FakeLoginService } from './fake-login.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DatePipe } from '@angular/common';
+
+declare global{
+  interface Navigator{
+     msSaveBlob:(blob: Blob,fileName:string) => boolean
+     }
+  }
 
 @NgModule({
   declarations: [AppComponent],
@@ -52,6 +59,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     { provide: LoginService, useClass: FakeLoginService }, // <= Remove it in the real APP
     httpInterceptorProviders,
     appInitializerProviders,
+    DatePipe,
   ],
   bootstrap: [AppComponent],
 })
