@@ -12,6 +12,9 @@ import { NovaAnaliseComponent } from './nova-analise/nova-analise.component';
 import { AnaliseComponent } from './analise/analise.component';
 import { AnaliseService } from './analise/analise.service';
 import { VisualizarAnaliseComponent } from './analise/visualizar-analise/visualizar-analise.component';
+import { NovaAnaliseService } from './nova-analise/nova-analise.service';
+import { BeneficiadosComponent } from './beneficiado/novo-beneficiado.component';
+import { BeneficiadoService } from './beneficiado/novo-beneficiado.service';
 
 const COMPONENTS: any[] = [
   DashboardComponent,
@@ -22,13 +25,14 @@ const COMPONENTS: any[] = [
   Error500Component,
   NovaAnaliseComponent,
   AnaliseComponent,
-  VisualizarAnaliseComponent
+  VisualizarAnaliseComponent,
+  BeneficiadosComponent
 ];
 const COMPONENTS_DYNAMIC: any[] = [];
 
 @NgModule({
   imports: [SharedModule, RoutesRoutingModule],
   declarations: [...COMPONENTS, ...COMPONENTS_DYNAMIC],
-  providers:[AnaliseService]
+  providers:[AnaliseService, NovaAnaliseService, BeneficiadoService]
 })
 export class RoutesModule {}

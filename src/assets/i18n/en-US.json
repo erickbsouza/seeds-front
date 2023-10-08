@@ -2,6 +2,7 @@
   "menu": {
     "dashboard": "Dashboard",
     "analyses": "Analyses",
+    "benefiteds": "Benefiteds",
     "new-analyse": "New Analyse",
     "design": "Design",
     "design.colors": "Color System",

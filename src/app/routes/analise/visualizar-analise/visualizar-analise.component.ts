@@ -58,28 +58,30 @@ import { COLUMNS } from "../colunas.interface";
       const idAnalise = Number(this.router.snapshot.paramMap.get('id'));
       this.analiseService.detalhes(idAnalise).subscribe((res) => {
         this.analise = res;
-        let totalCount = this.analise.analysis_results.length;
-        this.analise.analysis_results.forEach((result) => {
-          this.series.chemicalDamage        += result.chemical_damage;
-          this.series.fungus                += result.fungus;
-          this.series.highVigor             += result.high_vigor;
-          this.series.physicalDamage        += result.physical_damage;
-          this.series.wrinkled              += result.wrinkled;
-          this.series.total                 += result.seeds_total;
+        if(this.analise){
+          let totalCount = this.analise.analysis_results.length;
+          this.analise.analysis_results.forEach((result) => {
+            this.series.chemicalDamage        += result.chemical_damage;
+            this.series.fungus                += result.fungus;
+            this.series.highVigor             += result.high_vigor;
+            this.series.physicalDamage        += result.physical_damage;
+            this.series.wrinkled              += result.wrinkled;
+            this.series.total                 += result.seeds_total;
 
-          this.seriesMedia.chemicalDamage   = Math.round(this.series.chemicalDamage / totalCount)
-          this.seriesMedia.fungus           = Math.round(this.series.fungus         / totalCount)
-          this.seriesMedia.highVigor        = Math.round(this.series.highVigor      / totalCount)
-          this.seriesMedia.physicalDamage   = Math.round(this.series.physicalDamage / totalCount)
-          this.seriesMedia.wrinkled         = Math.round(this.series.wrinkled       / totalCount)
-          this.seriesMedia.total            = Math.round(this.series.total          / totalCount)
+            this.seriesMedia.chemicalDamage   = Math.round(this.series.chemicalDamage / totalCount)
+            this.seriesMedia.fungus           = Math.round(this.series.fungus         / totalCount)
+            this.seriesMedia.highVigor        = Math.round(this.series.highVigor      / totalCount)
+            this.seriesMedia.physicalDamage   = Math.round(this.series.physicalDamage / totalCount)
+            this.seriesMedia.wrinkled         = Math.round(this.series.wrinkled       / totalCount)
+            this.seriesMedia.total            = Math.round(this.series.total          / totalCount)
         });
-        this.quantityHighVigorSeeds = this.series.highVigor;
-        this.quantitySeedsWithProblems =  this.series.total - this.series.highVigor
-        this.createPieChart();
-        this.createPareto();
-        this.createBarNormal();
-        this.createBarMedial();
+          this.quantityHighVigorSeeds = this.series.highVigor;
+          this.quantitySeedsWithProblems =  this.series.total - this.series.highVigor
+          this.createPieChart();
+          this.createPareto();
+          this.createBarNormal();
+          this.createBarMedial();
+      }
       });
     }
 

@@ -18,5 +18,10 @@ export class AnaliseService {
         return this.http.get<Response>(`${SEEDS_API}/analyses/${idAnalise}`).pipe(
             map((resp) => resp.data));
     }
+
+    deletar(idAnalise:number):Observable<any>{
+        return this.http.delete<Response>(`${SEEDS_API}/analyses/${idAnalise}`).pipe(
+            map((resp) => resp));
+    }
     
 }

@@ -46,6 +46,7 @@ export class AnaliseComponent implements AfterViewInit {
   consultar(){
     this.analiseService.consultar().subscribe((res)=>{
       this.dataSource = new MatTableDataSource(res)
+      this.dataSource.paginator = this.paginator;
     })
   }
 
@@ -65,7 +66,6 @@ export class AnaliseComponent implements AfterViewInit {
 
   irParaAnalise(idAnalise: number){
     this.analiseService.detalhes(idAnalise).subscribe((res)=>{
-      console.log(res);
       this.router.navigate(['view-analyses', idAnalise])
     })
   }
@@ -73,7 +73,11 @@ export class AnaliseComponent implements AfterViewInit {
   deletarAnalise(idAnalise: number){
     const dialogRef = this.dialog.open(ExcluirDialog);
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if(result){
+        this.analiseService.deletar(idAnalise).subscribe((res)=>{
+          this.consultar()
+        })
+      }
     });
   }
 

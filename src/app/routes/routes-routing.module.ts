@@ -14,6 +14,7 @@ import { authGuard } from '@core';
 import { NovaAnaliseComponent } from './nova-analise/nova-analise.component';
 import { AnaliseComponent } from './analise/analise.component';
 import { VisualizarAnaliseComponent } from './analise/visualizar-analise/visualizar-analise.component';
+import { BeneficiadosComponent } from './beneficiado/novo-beneficiado.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'new-analyse', component: NovaAnaliseComponent },
       { path: 'analyses', component: AnaliseComponent},
+      { path: 'benefiteds', component: BeneficiadosComponent },
       { path: 'view-analyses/:id', component: VisualizarAnaliseComponent },
       { path: '403', component: Error403Component },
       { path: '404', component: Error404Component },

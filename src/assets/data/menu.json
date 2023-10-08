@@ -17,6 +17,12 @@
       "name": "analyses",
       "type": "link",
       "icon": "table_chart"
+    },
+    {
+      "route": "benefiteds",
+      "name": "benefiteds",
+      "type": "link",
+      "icon": "table_chart"
     }
   ]
 }

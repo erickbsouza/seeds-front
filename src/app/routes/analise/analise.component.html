@@ -5,40 +5,40 @@
   </mat-form-field>
   
   <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort>
+    <table mat-table [dataSource]="dataSource">
   
       <!-- ID Column -->
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <th mat-header-cell *matHeaderCellDef > ID </th>
         <td mat-cell *matCellDef="let row"> {{row.id}} </td>
       </ng-container>
   
       <!-- responsible Column -->
       <ng-container matColumnDef="responsible">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Responsável </th>
+        <th mat-header-cell *matHeaderCellDef > Responsável </th>
         <td mat-cell *matCellDef="let row"> {{row.responsible}} </td>
       </ng-container>
   
       <!-- date_analyse Column -->
       <ng-container matColumnDef="date_analyse">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Data da análise </th>
+        <th mat-header-cell *matHeaderCellDef > Data da análise </th>
         <td mat-cell *matCellDef="let row"> {{row.date_analyse |date: "dd/MM/YYYY"}} </td>
       </ng-container>
   
       <!-- comments Column -->
       <ng-container matColumnDef="comments">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Comentários </th>
+        <th mat-header-cell *matHeaderCellDef > Comentários </th>
         <td mat-cell *matCellDef="let row"> {{row.comments}} </td>
       </ng-container>
 
       <!-- Fruit Column -->
       <ng-container matColumnDef="benefited">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Beneficiado </th>
+        <th mat-header-cell *matHeaderCellDef > Beneficiado </th>
         <td mat-cell *matCellDef="let row"> {{row.benefited.name}} </td>
       </ng-container>
 
       <ng-container matColumnDef="acoes">
-        <th class="padding-esquerdo" mat-header-cell *matHeaderCellDef mat-sort-header> Ações </th>
+        <th class="padding-esquerdo" mat-header-cell *matHeaderCellDef > Ações </th>
         <td mat-cell *matCellDef="let row">
           <button mat-icon-button color="accent" (click)="baixarAnalise(row.id)"
                   matTooltip="Download CSV" aria-label="Download CSV">
@@ -64,7 +64,7 @@
       </tr>
     </table>
   
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
   </div>
   
   
